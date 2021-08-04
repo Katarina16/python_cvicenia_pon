@@ -43,7 +43,11 @@ class Driver(Package):
             # return len(self.zoznamBalickov)
 
     def remainingPackages(self):
-        return len(self.zoznamBalickov)
+        pocetBaliku = 0
+        for polozka in self.zoznamBalickov:
+            if self.delivered == False:
+                pocetBaliku += 1
+        # return len(self.zoznamBalickov)
 
 
 alza = Package("Vaclavské námestia 25",2)
