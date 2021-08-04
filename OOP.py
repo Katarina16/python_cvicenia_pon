@@ -39,6 +39,7 @@ print(klára.vybrat_dovolenu(4))
 #     def getInfo(self):
 #         return f"Kniha {self.title} má {self.pages} a jej cena je {self.price}."
 #     def discount(self, sleva):
+#         self.price = self.price * (1 - sleva / 100) riešenie Jirka
 #         percento = (self.price/100)*sleva
 #         return self.price-percento
 # rybka = Book("Zlatá rybka", "130",199)
@@ -60,11 +61,11 @@ print(klára.vybrat_dovolenu(4))
 #         self.delivered = False
 #
 #     def getInfo(self):
-#         return f"Balíček je v stave nedoručený, doručovacia adresa je {self.address} a jeho váha je {self.weightInKilos} kg."
+#         return f"Balíček je v stave {self.delivered}, doručovacia adresa je {self.address} a jeho váha je {self.weightInKilos} kg."
 #
 #     def deliver(self):
 #         self.delivered = True
-#         return f"Balíček je v stave doručený, doručovacia adresa je {self.address} a jeho váha je {self.weightInKilos} kg."
+#
 #
 # alza = Package("Vaclavské námestia 25",2)
 # print(alza.getInfo())
@@ -115,21 +116,41 @@ class Auto:
         self.km = km
         self.dostupnost = True
 
-    def getInfo(self):
-        return f" {self.spz} {self.znacka} {self.km}"
-
     def pujc_auto(self):
-        if self.dostupnost == True:
+        if self.dostupnost:
             self.dostupnost = False
             print("Potvrzuji zapůjčení vozidla")
         else:
             print(f"Vozidlo není k dispozici")
 
-znackaAuta = input("Aké auto si prajete požičiať?: ")
+    def getInfo(self):
+         return f" {self.spz} {self.znacka} {self.km}"
+
+    def vrat_auto(self, pocet_dni, stav_tachometru):
+        self.km == stav_tachometru
+        self.dostupnost = True
+        if pocet_dni < 7:
+             return pocet_dni * 400
+        else:
+             return pocet_dni * 300
+
+
 peugeot = Auto("4A2 3020","Peugeot 403 Cabrio",47534)
 octavia = Auto("1P3 4747","Škoda Octavia",41253)
-print(peugeot.getInfo())
-print(octavia.getInfo())
+pozadovane_auto = input("Zadaj značku auta (možnosti: Škoda, Peugeot): ")
+
+print(peugeot.pujc_auto())
+print(octavia.vrat_auto(10,5000))
+print(octavia.pujc_auto())
+
+# if pozadovane_auto == "Peugeot":
+#     print(peugeot.getInfo())
+#     print(peugeot.pujc_auto())
+# else:
+#     print(octavia.getInfo())
+#     print(octavia.pujc_auto())
+
+
 
 # Třídě Auto přidej metodu pujc_auto(), která nebude mít (kromě obligátního self) žádný parametr.
 # Funkce zkontroluje, jestli je vozidlo aktuálně volné. Pokud je volné, změní hodnotu atributu, který určuje,
