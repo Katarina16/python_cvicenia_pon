@@ -71,6 +71,17 @@ male_staty = staty["population"] < 1_000_000
 
 print(staty[male_staty]["area"])
 
+# male_europske_staty = staty[
+#     (staty["population"] < 1_000_000) &
+#     (staty["region"] == "Europe")
+# ]
+
+male_eur_asie_staty = staty[
+    (staty["population"] < 1_000_000) &
+    (staty["region"].isin(["Europe","Asia"])) #víc hodnot v stlpci isin()
+]
+
+print(male_eur_asie_staty)
 
 
 
